@@ -1,11 +1,13 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import EmberLogo from '../assets/ember.svg'
+import { Image } from 'astro:assets';
 ---
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+<h2><a class="logo" href="/"><Image src={EmberLogo} alt={"ember Logo"}/>{SITE_TITLE}</a></h2>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
@@ -14,12 +16,28 @@ import HeaderLink from './HeaderLink.astro';
 	</nav>
 </header>
 <style>
+
+.logo {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 0.25rem;
+	}
+
 	header {
 		margin: 0;
 		padding: 0 1em;
 		background: white;
 		box-shadow: 0 2px 8px rgba(var(--black), 5%);
 	}
+
+	@media (prefers-color-scheme: dark) {
+		header {
+			background: black;
+		}
+	}
+
 	h2 {
 		margin: 0;
 		font-size: 1em;
